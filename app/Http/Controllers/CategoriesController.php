@@ -22,4 +22,8 @@ class CategoriesController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
+    public function show(Category $category){
+        return view('admin.categories.show', compact('category') );
+    }
+
 }
