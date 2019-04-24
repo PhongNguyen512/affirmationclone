@@ -54,7 +54,7 @@
 
                     <div class="card-body py-3">                   
                         <h5 class="card-title mb-0">
-                            <a class="text-fiord-blue" href="">{{$affList[$i]->id}}</a>
+                            <a class="text-fiord-blue" href="{{ route('affirmations.show', ['aff' => $affList[$i]->id]) }}">{{$affList[$i]->id}}</a>
                         </h5>
                         <p class="card-text d-inline-block mb-3 "> {{ $affList[$i]->aff_content }} </p>
                     <span class="d-block text-muted">{{ date('F d, Y', strtotime($affList[$i]->created_at)) }}</span>

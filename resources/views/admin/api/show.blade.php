@@ -1,6 +1,6 @@
 @extends('admin.base-template.base')
 
-{{-- @section('CategoriesStatus', 'active') --}}
+@section('ApisStatus', 'active')
 
 @section('main-content')
 
