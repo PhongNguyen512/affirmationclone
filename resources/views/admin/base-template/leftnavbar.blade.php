@@ -39,14 +39,14 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link @yield('PostsStatus')" href="{{ route('items.index') }}">
+                <a class="nav-link @yield('PostsStatus')" href="{{ route('affirmations.index') }}">
                     <i class="material-icons">vertical_split</i>
-                    <span>Posts</span>
+                    <span>Affirmations</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link @yield('PostsStatus')" href="{{ route('getApi.index') }}">
+                <a class="nav-link @yield('AffsStatus')" href="{{ route('getApi.index') }}">
                     <i class="material-icons">vertical_split</i>
                     <span>API</span>
                 </a>

@@ -25,8 +25,10 @@ Route::group(['prefix' => 'categories', 'middleware' => ['auth']], function(){
     Route::get('/{category}', 'CategoriesController@show')->name('categories.show');
 });
 
-Route::group(['prefix' => 'items', 'middleware' => ['auth']], function(){ 
-    Route::get('/', 'ItemController@index')->name('items.index');
+Route::group(['prefix' => 'affirmations', 'middleware' => ['auth']], function(){ 
+    Route::get('/', 'AffirmationController@index')->name('affirmations.index');
+
+    Route::get('/{aff}', 'AffirmationController@show')->name('affirmations.show');
 });
 
 Route::group(['prefix' => 'getApi', 'middleware' => ['auth']], function(){ 
