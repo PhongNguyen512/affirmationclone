@@ -44,6 +44,13 @@
                     <span>Posts</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link @yield('PostsStatus')" href="{{ route('getApi.index') }}">
+                    <i class="material-icons">vertical_split</i>
+                    <span>API</span>
+                </a>
+            </li>
             
         </ul>
     </div>
