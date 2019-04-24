@@ -63,8 +63,7 @@
 
                 </div>
             </div>
-        @endfor
-        
+        @endfor        
     </div>
     <!-- End Default Light Table -->
 @endif

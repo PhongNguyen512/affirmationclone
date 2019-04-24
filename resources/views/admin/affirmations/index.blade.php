@@ -1,6 +1,6 @@
 @extends('admin.base-template.base')
 
-@section('PostsStatus', 'active')
+@section('AffsStatus', 'active')
 
 @section('main-content')
 
@@ -23,7 +23,7 @@
 
                 <div class="card-body pb-2">
                     <h5 class="card-title mb-0">
-                        <a class="text-fiord-blue" href=""> {{$affirmation[$i]->id}} </a>
+                        <a class="text-fiord-blue" href="{{ route('affirmations.show', ['aff' => $affirmation[$i]->id]) }}"> {{$affirmation[$i]->id}} </a>
                     </h5>
                     
                     <p class="card-text d-inline-block mb-3 "> {{ $affirmation[$i]->aff_content }} </p>

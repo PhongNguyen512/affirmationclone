@@ -14,4 +14,8 @@ class AffirmationController extends Controller
     
         return view('admin.affirmations.index', compact('affirmation'));
     }
+
+    public function show(Affirmation $aff){
+        return view('admin.affirmations.show', compact('aff') );
+    }
 }
