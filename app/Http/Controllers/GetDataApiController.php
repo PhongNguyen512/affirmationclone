@@ -22,12 +22,13 @@ class GetDataApiController extends Controller
             'apiURL.required' => 'An API URL is required'
         ];
 
-        $request->validate([
-            'apiURL' => ['required'],
-        ], $customMess);
+        // $request->validate([
+        //     'apiURL' => ['required'],
+        // ], $customMess);
 
         $client = new Client();
-        $data = $client->request('GET', $request->apiURL);
+        // $data = $client->request('GET', $request->apiURL);
+        $data = $client->request('GET', 'http://affirmations.digitalfractaltechnologies.com/affirmations.json');
         $response = json_decode( $data->getBody() );
 
         //for checking invalid url
@@ -50,46 +51,27 @@ class GetDataApiController extends Controller
 
         $affirmation = Affirmation::firstOrCreate([ 'id' => $thing->ID ]);
         $affirmation->aff_content = $thing->AFFIRMATION;
-        $affirmation->save();
+        $affirmation->save(); 
 
         foreach( $thing->CATEGORIES as $category){
-            
+
+            $flag = true;    
             $category = Category::firstOrCreate([ 'category_title' => $category ]);
+            $affCatArray = $affirmation->CatList()->get()->toArray();
 
- 
-            // if( $affirmation->id == '1031'){
-            //     var_dump( in_array( $category->category_title, $affirmation->CatList()->get()->toArray() ) );
-            //     var_dump( $category->category_title );
-            //     var_dump( $affirmation->CatList()->get()->toArray() );
-            // }
-
-            // if( !in_array( $category->category_title, $affirmation->CatList()->get()->toArray() ) ){
-
-            //     $affirmation->CatList()->attach($category);
-
-            // }    
-
-            // var_dump($affirmation->CatList()->get())
-
-            $categoryLocalArray = $affirmation->CatList()->get()->toArray();
-
-            if( count($categoryLocalArray) == 0 )
+            if( count($affCatArray) == 0 )
                 $affirmation->CatList()->attach($category);
             else{
-                for ($i=0; $i < count($categoryLocalArray) ; $i++) { 
-
-                    var_dump([ 
-                        $category->category_title,  
-                        $categoryLocalArray[$i]["category_title"]
-                        ]);
-
-                    if( $category->category_title != $categoryLocalArray[$i]["category_title"] )
-                        $affirmation->CatList()->attach($category);
-
+                foreach( $affCatArray as $a ){
+                    if( array_search($category->category_title, $a) ){
+                        $flag = false;
+                        break;
+                    }
                 }
+                if($flag)
+                    $affirmation->CatList()->attach($category);
             }
         }
-
     }
 
 }
