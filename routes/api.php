@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Affirmation;
+use App\Http\Resources\AffirmationResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/affirmation', function(){
+    return AffirmationResource::collection(Affirmation::all());
+})->name('affAPI');
