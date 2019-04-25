@@ -22,13 +22,12 @@ class GetDataApiController extends Controller
             'apiURL.required' => 'An API URL is required'
         ];
 
-        // $request->validate([
-        //     'apiURL' => ['required'],
-        // ], $customMess);
+        $request->validate([
+            'apiURL' => ['required'],
+        ], $customMess);
 
         $client = new Client();
-        // $data = $client->request('GET', $request->apiURL);
-        $data = $client->request('GET', 'http://affirmations.digitalfractaltechnologies.com/affirmations.json');
+        $data = $client->request('GET', $request->apiURL);
         $response = json_decode( $data->getBody() );
 
         //for checking invalid url
