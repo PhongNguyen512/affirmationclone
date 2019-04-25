@@ -8,6 +8,8 @@ use GuzzleHttp\Message\Response;
 use App\Affirmation;
 use App\Category;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\AffirmationResource;
 
 class GetDataApiController extends Controller
 {
@@ -71,6 +73,29 @@ class GetDataApiController extends Controller
                     $affirmation->CatList()->attach($category);
             }
         }
+    }
+
+    public function JsonFile(Request $request){
+        $customMess =[
+            'fileName.required' => 'A File Name is required'
+        ];
+
+        $request->validate([
+            'fileName' => ['required'],
+        ], $customMess);
+
+        $dataContent = Storage::disk('local')->exists($request->fileName.'.json') ? json_decode(Storage::disk('local')->get($request->fileName.'.json')) : [];
+        
+        $inputData = AffirmationResource::collection(Affirmation::all());
+
+        array_push($dataContent, $inputData);
+
+        Storage::disk('local')->put($request->fileName.'.json', json_encode($dataContent));
+
+        $request->session()->flash('success', 'Task was successful!');
+
+        // return redirect( route('getApi.index') );
+        return back();
     }
 
 }

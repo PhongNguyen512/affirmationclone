@@ -37,6 +37,8 @@ Route::group(['prefix' => 'getApi', 'middleware' => ['auth']], function(){
     Route::post('/', 'GetDataApiController@get')->name('getApi.get');
 
     Route::get('/show', 'GetDataApiController@show')->name('getApi.show');
+
+    Route::post('/file', 'GetDataApiController@JsonFile')->name('getApi.jsonfile');
 });
 
 Auth::routes(['register' => false]);
