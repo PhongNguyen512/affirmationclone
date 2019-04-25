@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
     
 Route::get('/admin', function(){
     return view('admin/index');
@@ -22,24 +22,21 @@ Route::get('/admin', function(){
 Route::group(['prefix' => 'categories', 'middleware' => ['auth']], function(){
     Route::get('/', 'CategoriesController@index')->name('categories.index');
     
-    Route::get('/create', 'CategoriesController@create')->name('categories.create');
-    Route::post('/', 'CategoriesController@store')->name('categories.store');
     Route::get('/{category}', 'CategoriesController@show')->name('categories.show');
-
-    Route::get('/{category}/edit', 'CategoriesController@edit')->name('categories.edit');
-    Route::patch('/{category}', 'CategoriesController@update')->name('categories.update');
-    Route::delete('/{category}', 'CategoriesController@destroy')->name('categories.destroy');
 });
 
-Route::group(['prefix' => 'items', 'middleware' => ['auth']], function(){ 
-    Route::get('/', 'ItemController@index')->name('items.index');
-    Route::get('/create', 'ItemController@create')->name('items.create');
+Route::group(['prefix' => 'affirmations', 'middleware' => ['auth']], function(){ 
+    Route::get('/', 'AffirmationController@index')->name('affirmations.index');
+
+    Route::get('/{aff}', 'AffirmationController@show')->name('affirmations.show');
+});
+
+Route::group(['prefix' => 'getApi', 'middleware' => ['auth']], function(){ 
+    Route::get('/', 'GetDataApiController@index')->name('getApi.index');
     
-    Route::post('/', 'ItemController@store')->name('items.store');
-    Route::get('/{item}', 'ItemController@show')->name('items.show');
-    Route::get('/{item}/edit', 'ItemController@edit')->name('items.edit');
-    Route::patch('/{item}', 'ItemController@update')->name('items.update');
-    Route::delete('/{item}', 'ItemController@destroy')->name('items.destroy');
+    Route::post('/', 'GetDataApiController@get')->name('getApi.get');
+
+    Route::get('/show', 'GetDataApiController@show')->name('getApi.show');
 });
 
 Auth::routes(['register' => false]);

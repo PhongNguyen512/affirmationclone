@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Affirmation extends Model
 {
     protected $fillable = [
-        'aff_content',
+        'aff_content', 'id'
     ];
 
     public function CatList(){

@@ -15,7 +15,7 @@ class CreateAffirmationsTable extends Migration
     {
         Schema::create('affirmations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('aff_content');
+            $table->text('aff_content')->nullable();
             $table->timestamps();
         });
     }
