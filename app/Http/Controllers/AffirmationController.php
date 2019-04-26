@@ -29,6 +29,7 @@ class AffirmationController extends Controller
 
     public function update(Request $request, Affirmation $aff)
     {
+        dd($aff->categorySelection);
         $request->validate([
             'aff_content' => ['required'],
         ]);   

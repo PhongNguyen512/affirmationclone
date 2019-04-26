@@ -60,10 +60,12 @@
                                     $categoryArray = $aff->CatList()->get()->pluck('category_title')->toArray();
                                 @endphp
                                 
+                                <input id="categorySelection" name="categorySelection" type="hidden" value="">
+
                                 @foreach($categories as $c)
                                     <div class="custom-control custom-checkbox mb-1">
                                         <input type="checkbox" id="category{{$c->id}}" class="custom-control-input" value="{{$c->id}}"
-                                            {{ in_array($c->category_title, $categoryArray) ? 'checked' : '' }}>
+                                            {{ in_array($c->category_title, $categoryArray) ? 'checked' : '' }} name="catSelection">
                                         <label class="custom-control-label" for="category{{$c->id}}">{{$c->category_title}}</label>
                                     </div>
                                 @endforeach
@@ -93,12 +95,22 @@
 
     var deltaContent = document.getElementById('deltaContent').innerHTML;
 
-    quill.setText(deltaContent);    
+    quill.setText(deltaContent);  
+
+    var categorySelection  = [];
 
     $('#submitForm').on("submit", function(){
         var aff_content = document.querySelector('input[name=aff_content]');
         
         aff_content.value = quill.getText();
+
+        $.each($("input[name='catSelection']:checked"), function(){            
+            categorySelection.push($(this).val());
+        });
+
+        
+
+        document.querySelector('input[name=categorySelection]').value = categorySelection;
     });
 
 </script>
