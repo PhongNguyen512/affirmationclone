@@ -19,7 +19,26 @@
                     <a class="text-fiord-blue" >{{$aff->id}}</a>
                 </h5>
                 <p class="card-text d-inline-block mb-2 "> {{ $aff->aff_content }} </p>
-            <span class="d-block text-muted">{{ date('F d, Y', strtotime($aff->created_at)) }}</span>
+                <span class="d-block text-muted">{{ date('F d, Y', strtotime($aff->created_at)) }}</span>
+
+                <div class="row mt-2">
+
+                    <a href="{{ route('affirmations.edit', ['aff' => $aff->id]) }}" class="ml-3 btn btn-sm btn-outline-accent" 
+                        data-toggle="tooltip" data-placement="top" title="Edit">
+                        <i class="material-icons">edit</i>Edit
+                    </a> 
+
+                    @can('deleteItem', App\Item::class)
+                        <form method="POST" action="">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class=" ml-3 btn btn-sm btn-outline-accent ">
+                                <i class="material-icons">delete</i> Destroy</button>
+                        </form>
+                    @endcan 
+
+                </div>                
                 
             </div>
 
@@ -32,6 +51,7 @@
     $catList = $aff->CatList()->get();
 @endphp
 
+{{-- Categories Detail --}}
 @if(count( $catArray ) > 0)
 <div class="page-header row no-gutters py-4">
     <div class="col-12 col-sm-6 text-center text-sm-left mb-0">

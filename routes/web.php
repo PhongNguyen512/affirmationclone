@@ -27,8 +27,14 @@ Route::group(['prefix' => 'categories', 'middleware' => ['auth']], function(){
 
 Route::group(['prefix' => 'affirmations', 'middleware' => ['auth']], function(){ 
     Route::get('/', 'AffirmationController@index')->name('affirmations.index');
-
+    Route::get('/create', 'AffirmationController@create')->name('affirmations.create');
+    
+    Route::post('/', 'AffirmationController@store')->name('affirmations.store');
     Route::get('/{aff}', 'AffirmationController@show')->name('affirmations.show');
+
+    Route::get('/{aff}/edit', 'AffirmationController@edit')->name('affirmations.edit');
+    Route::patch('/{aff}', 'AffirmationController@update')->name('affirmations.update');
+    Route::delete('/{aff}', 'AffirmationController@destroy')->name('affirmations.destroy');
 });
 
 Route::group(['prefix' => 'getApi', 'middleware' => ['auth']], function(){ 
