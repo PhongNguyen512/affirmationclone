@@ -23,6 +23,9 @@ Route::group(['prefix' => 'categories', 'middleware' => ['auth']], function(){
     Route::get('/', 'CategoriesController@index')->name('categories.index');
     
     Route::get('/{category}', 'CategoriesController@show')->name('categories.show');
+
+    Route::get('/{category}/edit', 'CategoriesController@edit')->name('categories.edit');
+    Route::patch('/{category}', 'CategoriesController@update')->name('categories.update');
 });
 
 Route::group(['prefix' => 'affirmations', 'middleware' => ['auth']], function(){ 

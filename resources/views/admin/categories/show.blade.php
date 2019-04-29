@@ -27,6 +27,13 @@
 
                     </div>
 
+                    <div class="row mt-2">
+                        <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="ml-3 btn btn-sm btn-outline-accent" 
+                            data-toggle="tooltip" data-placement="top" title="Edit">
+                            <i class="material-icons">edit</i>Edit
+                        </a> 
+                    </div>  
+
                 </li>
             </ul>
         </div>
@@ -36,11 +43,10 @@
 </div>
 
 @php
-    $affArray = $category->AffList()->get()->toArray();
     $affList = $category->AffList()->get();
 @endphp
 
-@if(count( $affArray ) > 0)
+@if(count( $affList ) > 0)
 <div class="page-header row no-gutters py-4">
     <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
         <h3 class="page-title">Affirmations Detail</h3>        

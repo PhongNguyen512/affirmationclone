@@ -32,10 +32,14 @@
                                 <td>{{$c->category_title}}</td>
                                 <td>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col offset-3">
                                             <a href="{{ route('categories.show', ['category' => $c->id]) }}" class="float-left mb-2 btn btn-sm btn-outline-primary" 
                                                 data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="material-icons">edit</i>Show
+                                            </a>
+                                            <a href="{{ route('categories.edit', ['category' => $c->id]) }}" class="float-left ml-2 mb-2 btn btn-sm btn-outline-primary" 
+                                                data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="material-icons">edit</i>Edit
                                             </a>
                                         </div>
                                     </div>
