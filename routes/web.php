@@ -22,6 +22,8 @@ Route::get('/admin', function(){
 Route::group(['prefix' => 'categories', 'middleware' => ['auth']], function(){
     Route::get('/', 'CategoriesController@index')->name('categories.index');
     
+    Route::get('/create', 'CategoriesController@create')->name('categories.create');
+    Route::post('/', 'CategoriesController@store')->name('categories.store');
     Route::get('/{category}', 'CategoriesController@show')->name('categories.show');
 
     Route::get('/{category}/edit', 'CategoriesController@edit')->name('categories.edit');

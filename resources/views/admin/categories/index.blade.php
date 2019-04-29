@@ -9,6 +9,10 @@
     <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Overview</span>
         <h3 class="page-title">Categories</h3>
+        <a class="btn btn-outline-dark mt-3" href="{{ route('categories.create') }}">
+            <i class="material-icons">add</i>
+            <span>Add New Category</span>
+        </a>
     </div>
 </div>
 <!-- End Page Header -->

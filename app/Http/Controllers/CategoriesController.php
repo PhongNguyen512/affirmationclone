@@ -23,6 +23,26 @@ class CategoriesController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
+    public function create()
+    {
+        $categories = Category::all();
+
+        return view('admin.categories.create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'category_title' => ['required', 'unique:categories', 'max:255'],
+        ]);   
+
+        Category::create([
+            'category_title' => $request->category_title,
+        ]);
+      
+        return redirect(route('categories.index'));
+    }
+
     public function show(Category $category){
         return view('admin.categories.show', compact('category') );
     }
