@@ -48,18 +48,12 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item px-3 pb-2">
                             <fieldset>
-                                {{-- @foreach($categories as $c)                                    
-                                    <div class="custom-control custom-radio mb-1">
-                                        <input type="radio" id="category{{$c->id}}" name="categorySelection" value="{{$c->id}}" 
-                                            class="custom-control-input" >
-                                        <label class="custom-control-label" for="category{{$c->id}}">{{$c->category_title}}</label>
-                                    </div>
-                                @endforeach --}}
-
+  
                                 @php
                                     $categoryArray = $aff->CatList()->get()->pluck('category_title')->toArray();
                                 @endphp
                                 
+                                {{-- This input will contain all of checked value from the checkboxes --}}
                                 <input id="categorySelection" name="categorySelection" type="hidden" value="">
 
                                 @foreach($categories as $c)

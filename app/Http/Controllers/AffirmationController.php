@@ -33,13 +33,19 @@ class AffirmationController extends Controller
             'aff_content' => ['required'],
         ]);   
 
+        //str -> arr
         $inputArray = explode(',', $request->categorySelection) ;
 
+        //Check what database have with the input value
+        //If the item in database have can't be found in the input value
+        //That item will be detach
         foreach ($aff->CatList()->get() as $a) {
             if(!in_array($a->id, $inputArray))
                 $aff->CatList()->detach($a);           
         }
 
+        //Check not exist item from input value to database
+        //Add all different items from input value
         foreach ($inputArray as $i) {
             if(!$aff->CatList()->get()->contains('id', $i))
                $aff->CatList()->attach(Category::find($i));
