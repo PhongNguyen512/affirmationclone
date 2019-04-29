@@ -23,7 +23,7 @@
                             <span class="input-group-text">Category Title</span>
                         </div>
                         <input id="category_title" name="category_title" type="text" class="form-control {{ $errors->has('category_title') ? ' border-danger' : '' }}" 
-                        value="{{ $category->category_title }}" placeholder="Enter title" aria-label="Enter title" aria-describedby="basic-addon1" disable>
+                        value="{{ $category->category_title }}" placeholder="Enter title" aria-label="Enter title">
 
                     </div>
 
@@ -42,16 +42,17 @@
 
 </div>
 
+{{-- Affirmation List --}}
 @php
     $affList = $category->AffList()->get();
 @endphp
 
 @if(count( $affList ) > 0)
-<div class="page-header row no-gutters py-4">
-    <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-        <h3 class="page-title">Affirmations Detail</h3>        
+    <div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
+            <h3 class="page-title">Affirmations List</h3>        
+        </div>
     </div>
-</div>
     <!-- Default Light Table -->
     <div class="row">
         @foreach ($affList->sort() as $a)
