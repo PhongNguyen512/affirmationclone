@@ -45,6 +45,15 @@
                                                 data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="material-icons">edit</i>Edit
                                             </a>
+                                            @can('deleteCategory', App\Category::class)
+                                                <form class="delete" method="POST" action="{{ route('categories.destroy', ['category' => $c->id]) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                
+                                                    <button type="submit" class="btn btn-sm btn-outline-accent ">
+                                                        <i class="material-icons">delete</i> Destroy</button>
+                                                </form>
+                                            @endcan
                                         </div>
                                     </div>
                                 </td>
@@ -59,4 +68,12 @@
 </div>
 <!-- End Default Light Table -->
     
+@endsection
+
+@section('additional-script')
+<script>
+    $(".delete").on("submit", function(){
+        return confirm("Are you sure?");
+    });
+</script>
 @endsection

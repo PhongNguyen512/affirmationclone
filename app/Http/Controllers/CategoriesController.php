@@ -78,4 +78,21 @@ class CategoriesController extends Controller
 
         return redirect(route('categories.show', compact('category')));      
     }
+
+    public function destroy(Category $category)
+    {
+        //policy
+        $this->authorize('deleteCategory', Category::class);
+
+        if( count($category->AffList) > 0 ){
+            $destroyError = new MessageBag();
+            $destroyError->add('destroy', 'You can\'t delete this');
+
+            return redirect(route('categories.show', compact('category')))->withErrors($destroyError);
+        }
+
+        $category->delete();
+
+        return redirect(route('categories.index'));
+    }
 }

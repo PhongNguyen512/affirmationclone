@@ -25,6 +25,12 @@
                         <input id="category_title" name="category_title" type="text" class="form-control {{ $errors->has('category_title') ? ' border-danger' : '' }}" 
                         value="{{ $category->category_title }}" placeholder="Enter title" aria-label="Enter title">
 
+                        @if ($errors->has('destroy'))
+                            <span class="badge badge-danger" role="alert">
+                                {{ $errors->first('destroy') }}
+                            </span>
+                        @endif
+
                     </div>
 
                     <div class="row mt-2">
@@ -32,6 +38,15 @@
                             data-toggle="tooltip" data-placement="top" title="Edit">
                             <i class="material-icons">edit</i>Edit
                         </a> 
+                        @can('deleteCategory', App\Category::class)
+                            <form class="delete" method="POST" action="{{ route('categories.destroy', ['category' => $category->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                            
+                                <button type="submit" class="btn btn-sm btn-outline-accent ">
+                                    <i class="material-icons">delete</i> Destroy</button>
+                            </form>
+                        @endcan
                     </div>  
 
                 </li>
@@ -75,4 +90,12 @@
     <!-- End Default Light Table -->
 @endif
 
+@endsection
+
+@section('additional-script')
+<script>
+    $(".delete").on("submit", function(){
+        return confirm("Are you sure?");
+    });
+</script>
 @endsection
