@@ -8,9 +8,9 @@
     @method('PATCH')
 
     <div class="page-header row no-gutters py-4">
-        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+        <div class="col-12 text-center text-sm-left mb-0">
             <span class="text-uppercase page-subtitle">Blog Posts</span>
-            <h3 class="page-title">Update Post</h3>
+            <h3 class="page-title">Update Affirmation #{{$aff->id}}</h3>
         </div>
     </div>
     <!-- End Page Header -->
@@ -97,7 +97,7 @@
 
     quill.setText(deltaContent);  
 
-    var categorySelection  = [];
+    var categorySelection  = new Array();
 
     $('#submitForm').on("submit", function(){
         var aff_content = document.querySelector('input[name=aff_content]');
@@ -107,8 +107,6 @@
         $.each($("input[name='catSelection']:checked"), function(){            
             categorySelection.push($(this).val());
         });
-
-        
 
         document.querySelector('input[name=categorySelection]').value = categorySelection;
     });

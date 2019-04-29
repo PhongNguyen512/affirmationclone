@@ -29,15 +29,25 @@ class AffirmationController extends Controller
 
     public function update(Request $request, Affirmation $aff)
     {
-        dd($aff->categorySelection);
         $request->validate([
             'aff_content' => ['required'],
         ]);   
 
+        $inputArray = explode(',', $request->categorySelection) ;
+
+        foreach ($aff->CatList()->get() as $a) {
+            if(!in_array($a->id, $inputArray))
+                $aff->CatList()->detach($a);           
+        }
+
+        foreach ($inputArray as $i) {
+            if(!$aff->CatList()->get()->contains('id', $i))
+               $aff->CatList()->attach(Category::find($i));
+        }
+
         $aff->aff_content = $request->aff_content;
-            #detach / attach code
         $aff->save();
             
-        return redirect(route('affirmations.index'));
+        return redirect(route('affirmations.show', ['aff' => $aff->id]));
     }
 }

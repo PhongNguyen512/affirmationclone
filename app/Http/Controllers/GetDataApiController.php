@@ -94,7 +94,6 @@ class GetDataApiController extends Controller
 
         $request->session()->flash('success', 'Task was successful!');
 
-        // return redirect( route('getApi.index') );
         return back();
     }
 
