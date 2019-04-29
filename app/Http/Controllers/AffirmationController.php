@@ -16,6 +16,35 @@ class AffirmationController extends Controller
         return view('admin.affirmations.index', compact('affirmation'));
     }
 
+    public function create()
+    {
+        $categories = Category::all();
+
+        $id = Affirmation::all()->last()->id + 1;
+
+        return view('admin.affirmations.create', compact(['categories', 'id']) );
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'id' => [ 'unique:affirmations' ],
+            'aff_content' => ['required'],
+        ]);   
+
+        Affirmation::create( [
+            'id' => $request->id,
+            'aff_content' => $request->aff_content,
+        ]);
+
+        $aff = Affirmation::find($request->id);
+
+        foreach( explode(',', $request->categorySelection) as $category )
+            $aff->CatList()->attach($category);
+      
+        return redirect(route('affirmations.index'));
+    }
+
     public function show(Affirmation $aff){
         return view('admin.affirmations.show', compact('aff') );
     }

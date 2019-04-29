@@ -11,6 +11,10 @@
     <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Overview</span>
         <h3 class="page-title">Affirmations</h3>
+        <a class="btn btn-outline-dark mt-3"  href="{{ route('affirmations.create') }}">
+            <i class="material-icons">add</i>
+            <span>Add New Affirmation</span>
+        </a>
     </div>
 </div>
 <!-- End Page Header -->
