@@ -82,7 +82,7 @@ After it inserted the user to the database, you can login to the `/admin` by usi
 ```
 Email | Password . sa@gmail.com | 123456
 ```
-* **Configuring the Directory Permissions
+* **Configuring the Directory Permissions**
 
 After the above steps, you need to configure the permission of directories within the **storage** and the **bootstrap/cache**. Those directories should be writable by your Web-server.
 
