@@ -13,7 +13,13 @@
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
         <div class="card card-small card-post card-post--1 card-post--aside">
-            <div class="card-body py-3">                   
+            <div class="card-body py-3">    
+                @if ($errors->has('destroy'))
+                    <span class="badge badge-danger" role="alert">
+                        {{ $errors->first('destroy') }}
+                    </span>
+                @endif
+
                 <h5 class="card-title mb-0">
                     <a class="text-fiord-blue" >{{$aff->id}}</a>
                 </h5>
@@ -26,6 +32,15 @@
                         data-toggle="tooltip" data-placement="top" title="Edit">
                         <i class="material-icons">edit</i>Edit
                     </a> 
+                    @can('deleteItem', App\Category::class)
+                            <form class="delete" method="POST" action="{{ route('affirmations.destroy', ['aff' => $aff->id]) }}">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class=" ml-3 btn btn-sm btn-outline-accent ">
+                                    <i class="material-icons">delete</i> Destroy</button>
+                            </form>
+                        @endcan 
 
                 </div> 
             </div>
@@ -63,4 +78,12 @@
     </div>   
 @endif
 
+@endsection
+
+@section('additional-script')
+<script>
+    $(".delete").on("submit", function(){
+        return confirm("Are you sure?");
+    });
+</script>
 @endsection

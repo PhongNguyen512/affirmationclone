@@ -85,4 +85,21 @@ class AffirmationController extends Controller
             
         return redirect(route('affirmations.show', ['aff' => $aff->id]));
     }
+
+    public function destroy(Affirmation $aff)
+    {        
+        //policy
+        $this->authorize('deleteItem', Category::class);
+
+        if( count($aff->CatList) > 0 ){
+            $destroyError = new MessageBag();
+            $destroyError->add('destroy', 'You can\'t delete this');
+
+            return redirect(route('affirmations.show', compact('aff')))->withErrors($destroyError);
+        }
+
+        $item->delete();
+
+        return redirect(route('affirmations.index'));
+    }
 }
