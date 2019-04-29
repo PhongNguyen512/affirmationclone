@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Affirmation;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\MessageBag;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class CategoriesController extends Controller
 {

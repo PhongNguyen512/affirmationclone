@@ -13,7 +13,6 @@
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
         <div class="card card-small card-post card-post--1 card-post--aside">
-
             <div class="card-body py-3">                   
                 <h5 class="card-title mb-0">
                     <a class="text-fiord-blue" >{{$aff->id}}</a>
@@ -28,54 +27,40 @@
                         <i class="material-icons">edit</i>Edit
                     </a> 
 
-                    @can('deleteItem', App\Item::class)
-                        <form method="POST" action="">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class=" ml-3 btn btn-sm btn-outline-accent ">
-                                <i class="material-icons">delete</i> Destroy</button>
-                        </form>
-                    @endcan 
-
-                </div>                
-                
+                </div> 
             </div>
-
         </div>
     </div>      
 </div>
 
 @php
-    $catArray = $aff->CatList()->get()->toArray();
     $catList = $aff->CatList()->get();
 @endphp
 
-{{-- Categories Detail --}}
-@if(count( $catArray ) > 0)
-<div class="page-header row no-gutters py-4">
-    <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
-        <h3 class="page-title">Categories Detail</h3>        
-    </div>
-</div>
-
-<div class="row">
-    @for ($i = 0; $i < count( $catList ) ; $i++)
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post card-post--1 card-post--aside">
-
-                <div class="card-body py-3">                   
-                    <h5 class="card-title mb-0">
-                        <a class="text-fiord-blue" href="{{ route('categories.show', ['category' => $catList[$i]->id]) }}">{{$catList[$i]->category_title}}</a>
-                    </h5>                  
-                <span class="d-block text-muted">{{ date('F d, Y', strtotime($catList[$i]->created_at)) }}</span>  
-                </div>
-
-            </div>
+{{-- Categories List --}}
+@if(count( $catList ) > 0)
+    <div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
+            <h3 class="page-title">Categories List</h3>        
         </div>
-    @endfor        
-</div>
-   
+    </div>
+
+    <div class="row">
+        @foreach($catList as $cat)
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="card card-small card-post card-post--1 card-post--aside">
+
+                    <div class="card-body py-3">                   
+                        <h5 class="card-title mb-0">
+                            <a class="text-fiord-blue" href="{{ route('categories.show', ['category' => $cat->id]) }}">{{$cat->category_title}}</a>
+                        </h5>                  
+                    <span class="d-block text-muted">{{ date('F d, Y', strtotime($cat->created_at)) }}</span>  
+                    </div>
+
+                </div>
+            </div>
+        @endforeach       
+    </div>   
 @endif
 
 @endsection

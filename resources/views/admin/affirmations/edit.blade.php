@@ -9,19 +9,19 @@
 
     <div class="page-header row no-gutters py-4">
         <div class="col-12 text-center text-sm-left mb-0">
-            <span class="text-uppercase page-subtitle">Blog Posts</span>
-            <h3 class="page-title">Update Affirmation #{{$aff->id}}</h3>
+            <span class="text-uppercase page-subtitle">Affirmation</span>
+            <h3 class="page-title">Edit Affirmation #{{$aff->id}}</h3>
         </div>
     </div>
     <!-- End Page Header -->
     <div class="row">
         <div class="col-lg-9 col-md-12">
-        <!-- Add New Post Form -->
             <div class="card card-small mb-3">
                 <div class="card-body">
 
                     <p id="deltaContent" hidden value="">{{ $aff->aff_content }}</p>
                     <input id="aff_content" name="aff_content" type="hidden" value="">
+
                     <div id="editor-container" class="add-new-post__editor mb-1"></div>
                     @if ($errors->has('aff_content'))
                         <span class="badge badge-danger" role="alert">
@@ -35,10 +35,8 @@
                         <i class="material-icons">save</i> Update</button>
                 </li>
             </div>
-        <!-- / Add New Post Form -->
         </div>
         <div class="col-lg-3 col-md-12">
-
             <!-- Categories Overview -->
             <div class='card card-small mb-3'>
                 <div class="card-header border-bottom">

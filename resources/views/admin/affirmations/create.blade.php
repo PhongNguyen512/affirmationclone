@@ -11,10 +11,9 @@
             <h3 class="page-title">Create New Affirmation</h3>
         </div>
     </div>
-    <!-- End Page Header -->
+
     <div class="row">
         <div class="col-lg-9 col-md-12">
-        <!-- Add New Post Form -->
             <div class="card card-small mb-3">
                 <div class="card-body">
 
@@ -45,15 +44,13 @@
                         <i class="material-icons">save</i> Create</button>
                 </li>
             </div>
-        <!-- / Add New Post Form -->
         </div>
 
         <div class="col-lg-3 col-md-12">
-
             <!-- Categories Overview -->
             <div class='card card-small mb-3'>
                 <div class="card-header border-bottom">
-                <h6 class="m-0">Categories</h6>
+                    <h6 class="m-0">Categories</h6>
                 </div>
                 <div class='card-body p-0'>
                     <ul class="list-group list-group-flush">

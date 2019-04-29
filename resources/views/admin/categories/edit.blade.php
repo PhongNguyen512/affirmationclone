@@ -11,6 +11,7 @@
     </div>
 </div>
 <!-- End Page Header -->
+
 <form id="submitForm" method="POST" action="{{ route('categories.update', ['id' => $category->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
@@ -60,26 +61,26 @@
                 <input id="affirmationSelection" name="affirmationSelection" type="hidden" value="">
 
                 @foreach($aff as $a)
-                <div class="col-lg-3 col-md-3 col-sm-4 mb-4">
-                    <div class='card card-small mb-3'>
-                        <div class='card-body p-0'>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item px-3 pb-2">
-                                    <fieldset>
-                                        <div class="custom-control custom-checkbox mb-1">
-                                            <input type="checkbox" id="aff{{$a->id}}" class="custom-control-input" value="{{$a->id}}"
-                                                {{ $affList->contains('id', $a->id) ? 'checked':'' }} name="affSelection">
-                                            <label class="custom-control-label" for="aff{{$a->id}}" >
-                                                <a class="text-fiord-blue" title="{{$a->aff_content}}" data-toggle="tooltip" data-placement="top" 
-                                                    href="{{ route('affirmations.show', ['aff' => $a->id]) }}">#{{$a->id}}</a>
-                                            </label>
-                                        </div>
-                                    </fieldset>
-                                </li>
-                            </ul>
+                    <div class="col-lg-3 col-md-3 col-sm-4 mb-4">
+                        <div class='card card-small mb-3'>
+                            <div class='card-body p-0'>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item px-3 pb-2">
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox mb-1">
+                                                <input type="checkbox" id="aff{{$a->id}}" class="custom-control-input" value="{{$a->id}}"
+                                                    {{ $affList->contains('id', $a->id) ? 'checked':'' }} name="affSelection">
+                                                <label class="custom-control-label" for="aff{{$a->id}}" >
+                                                    <a class="text-fiord-blue" title="{{$a->aff_content}}" data-toggle="tooltip" data-placement="top" 
+                                                        href="{{ route('affirmations.show', ['aff' => $a->id]) }}">#{{$a->id}}</a>
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
             <!-- End Default Light Table -->
@@ -91,7 +92,7 @@
         <div class="col-lg-3 col-md-12">
             <div class='card card-small mb-3'>
                 <div class="card-header border-bottom">
-                <h6 class="m-0">Exist Categories</h6>
+                    <h6 class="m-0">Exist Categories</h6>
                 </div>
                 <div class='card-body p-0'>
                     <ul class="list-group list-group-flush">
