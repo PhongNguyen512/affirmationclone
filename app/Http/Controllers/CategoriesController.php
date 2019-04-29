@@ -37,14 +37,27 @@ class CategoriesController extends Controller
 
     public function update(Request $request, Category $category)
     {
+        //str -> arr
+        $inputArray = explode(',', $request->affirmationSelection);
+
         //check empty input
         $request->validate([
             'category_title' => ['required', 'max:255'],
         ]);
 
+        foreach ($category->AffList()->get() as $c) {
+            if(!in_array($c->id, $inputArray))
+                $category->AffList()->detach($c);           
+        }
+
+        foreach ($inputArray as $i) {
+            if(!$category->AffList()->get()->contains('id', $i))
+               $category->AffList()->attach(Affirmation::find($i));
+        }
+
         $category->category_title = $request->category_title;
         $category->save();
 
-        return redirect(route('categories.index'));      
+        return redirect(route('categories.show', compact('category')));      
     }
 }
