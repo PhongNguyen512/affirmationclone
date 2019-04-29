@@ -1,6 +1,6 @@
 # Setup and configurate for cloning project
 
-This is an admin dashboard for managerment about category and affirmation. 
+This is an admin dashboard for management about category and affirmation. 
 
 ## Getting Started
 
