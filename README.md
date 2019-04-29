@@ -87,6 +87,12 @@ Email | Password . sa@gmail.com | 123456
 After the above steps, you need to configure the permission of directories within the **storage** and the **bootstrap/cache**. Those directories should be writable by your Web-server.
 
 
+### Template
+
+This project used the **Shards Dashboard Lite**. If you want to modify the template, the following link will provide you a documentation for this template
+
+https://designrevision.com/docs/shards-dashboard-lite/index.html
+
 ## Built With
 
 * [Laravel](https://laravel.com/docs/5.8) - The web framework used
