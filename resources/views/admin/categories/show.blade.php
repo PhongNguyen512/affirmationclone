@@ -54,7 +54,7 @@
 </div>
     <!-- Default Light Table -->
     <div class="row">
-        @for ($i = 0; $i < count( $affList ) ; $i++)
+        {{-- @for ($i = 0; $i < count( $affList ) ; $i++)
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="card card-small card-post card-post--1 card-post--aside">
 
@@ -69,7 +69,24 @@
 
                 </div>
             </div>
-        @endfor        
+        @endfor         --}}
+        @foreach ($affList->sort() as $a)
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="card card-small card-post card-post--1 card-post--aside">
+
+                <div class="card-body py-3">                   
+                    <h5 class="card-title mb-0">
+                        <a class="text-fiord-blue" href="{{ route('affirmations.show', ['aff' => $a->id]) }}">{{$a->id}}</a>
+                    </h5>
+                    <p class="card-text d-inline-block mb-3 "> {{ $a->aff_content }} </p>
+                <span class="d-block text-muted">{{ date('F d, Y', strtotime($a->created_at)) }}</span>
+                    
+                </div>
+
+            </div>
+        </div>
+        @endforeach
+
     </div>
     <!-- End Default Light Table -->
 @endif
