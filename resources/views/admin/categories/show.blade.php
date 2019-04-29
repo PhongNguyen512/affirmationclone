@@ -27,6 +27,13 @@
 
                     </div>
 
+                    <div class="row mt-2">
+                        <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="ml-3 btn btn-sm btn-outline-accent" 
+                            data-toggle="tooltip" data-placement="top" title="Edit">
+                            <i class="material-icons">edit</i>Edit
+                        </a> 
+                    </div>  
+
                 </li>
             </ul>
         </div>
@@ -36,11 +43,10 @@
 </div>
 
 @php
-    $affArray = $category->AffList()->get()->toArray();
     $affList = $category->AffList()->get();
 @endphp
 
-@if(count( $affArray ) > 0)
+@if(count( $affList ) > 0)
 <div class="page-header row no-gutters py-4">
     <div class="col-12 col-sm-6 text-center text-sm-left mb-0">
         <h3 class="page-title">Affirmations Detail</h3>        
@@ -48,7 +54,7 @@
 </div>
     <!-- Default Light Table -->
     <div class="row">
-        @for ($i = 0; $i < count( $affList ) ; $i++)
+        {{-- @for ($i = 0; $i < count( $affList ) ; $i++)
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="card card-small card-post card-post--1 card-post--aside">
 
@@ -63,7 +69,24 @@
 
                 </div>
             </div>
-        @endfor        
+        @endfor         --}}
+        @foreach ($affList->sort() as $a)
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="card card-small card-post card-post--1 card-post--aside">
+
+                <div class="card-body py-3">                   
+                    <h5 class="card-title mb-0">
+                        <a class="text-fiord-blue" href="{{ route('affirmations.show', ['aff' => $a->id]) }}">{{$a->id}}</a>
+                    </h5>
+                    <p class="card-text d-inline-block mb-3 "> {{ $a->aff_content }} </p>
+                <span class="d-block text-muted">{{ date('F d, Y', strtotime($a->created_at)) }}</span>
+                    
+                </div>
+
+            </div>
+        </div>
+        @endforeach
+
     </div>
     <!-- End Default Light Table -->
 @endif

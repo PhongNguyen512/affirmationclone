@@ -9,6 +9,10 @@
     <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Overview</span>
         <h3 class="page-title">Categories</h3>
+        <a class="btn btn-outline-dark mt-3" href="{{ route('categories.create') }}">
+            <i class="material-icons">add</i>
+            <span>Add New Category</span>
+        </a>
     </div>
 </div>
 <!-- End Page Header -->
@@ -32,10 +36,14 @@
                                 <td>{{$c->category_title}}</td>
                                 <td>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col offset-3">
                                             <a href="{{ route('categories.show', ['category' => $c->id]) }}" class="float-left mb-2 btn btn-sm btn-outline-primary" 
                                                 data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="material-icons">edit</i>Show
+                                            </a>
+                                            <a href="{{ route('categories.edit', ['category' => $c->id]) }}" class="float-left ml-2 mb-2 btn btn-sm btn-outline-primary" 
+                                                data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="material-icons">edit</i>Edit
                                             </a>
                                         </div>
                                     </div>
